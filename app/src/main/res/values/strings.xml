@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AAC Basic</string>
+    <string name="retry_description">RETRY %1$d</string>
     <string name="flower_image">Flower image</string>
 </resources>
