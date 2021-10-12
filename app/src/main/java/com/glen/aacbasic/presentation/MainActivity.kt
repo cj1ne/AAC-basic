@@ -1,6 +1,7 @@
 package com.glen.aacbasic.presentation
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,7 +20,11 @@ class MainActivity : AppCompatActivity() {
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initView()
 
-        viewBinding.viewModel = viewModel
+        viewBinding.viewModel = viewModel.apply {
+            toastEvent.observe(this@MainActivity) { message ->
+                showToast(message)
+            }
+        }
         viewBinding.lifecycleOwner = this
     }
 
@@ -29,5 +34,9 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
             adapter = FlowerAdapter()
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -22,6 +22,8 @@ class MainViewModel : ViewModel() {
     private val _flowers = MutableLiveData<List<Flower>>(emptyList())
     val flowers: LiveData<List<Flower>> = _flowers
 
+    val toastEvent = SingleLiveEvent<String>()
+
 
     init {
         updateFlowers()
@@ -40,7 +42,7 @@ class MainViewModel : ViewModel() {
             _flowers.value = repository.fetchFlowers()
             _retryCount.value = (_retryCount.value ?: 0) + 1
             _isLoading.value = false
-
+            toastEvent.value = "Update done"
         }
     }
 }
