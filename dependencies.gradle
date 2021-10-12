@@ -13,4 +13,5 @@ ext {
     kotlinVersion = '1.4.32'
 
     coroutinesVersion = '1.5.2'
+    glideVersion = '4.11.0'
 }
